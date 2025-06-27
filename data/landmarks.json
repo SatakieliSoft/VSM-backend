@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Kostol sv. Martina",
+    "typ": "kostol",
+    "description": "Historický kostol sv. Martina v Tepličke nad Váhom.",
+    "latitude": 49.1508,
+    "longitude": 18.7651
+  },
+  {
+    "id": 2,
+    "name": "Kostol sv. Martina",
+    "typ": "kostol",
+    "description": "Kostol sv. Martina v centre mesta Martin.",
+    "latitude": 49.0648,
+    "longitude": 18.9213
+  },
+  {
+    "id": 3,
+    "name": "Kostol sv. Martina",
+    "typ": "kostol",
+    "description": "Rímskokatolícky kostol sv. Martina v Dolnom Štáli.",
+    "latitude": 47.9816,
+    "longitude": 17.6333
+  }
+]

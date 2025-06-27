@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "username": "demo_user",
+    "full_name": "Demo Pútnik",
+    "email": "demo@peregrini.sk",
+    "country": "Slovensko",
+    "language": "sk",
+    "avatar_url": "https://example.com/avatars/demo_user.png",
+    "points": 10
+  },
+  {
+    "id": 2,
+    "username": "martin_83",
+    "full_name": "Martin Pilgrim",
+    "email": "martin@peregrini.sk",
+    "country": "Slovensko",
+    "language": "sk",
+    "avatar_url": "https://example.com/avatars/martin.png",
+    "points": 35
+  },
+  {
+    "id": 3,
+    "username": "veronika_walks",
+    "full_name": "Veronika Putujúca",
+    "email": "veronika@peregrini.sk",
+    "country": "Rakúsko",
+    "language": "de",
+    "avatar_url": "https://example.com/avatars/veronika.png",
+    "points": 50
+  }
+]
