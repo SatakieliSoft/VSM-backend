@@ -8,7 +8,7 @@ from app.schemas.route import RouteCreate, RouteRead
 
 router = APIRouter()
 
-# Získanie databázovej session
+# 🔄 Získanie databázovej session
 def get_db():
     db = SessionLocal()
     try:
@@ -16,12 +16,12 @@ def get_db():
     finally:
         db.close()
 
-# Zoznam všetkých trás
+# 📋 Zoznam všetkých trás
 @router.get("/", response_model=List[RouteRead])
 def read_routes(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
     return db.query(Route).offset(skip).limit(limit).all()
 
-# Získanie trasy podľa ID
+# 🔍 Získanie trasy podľa ID
 @router.get("/{route_id}", response_model=RouteRead)
 def read_route(route_id: int, db: Session = Depends(get_db)):
     route = db.query(Route).filter(Route.id == route_id).first()
@@ -29,7 +29,7 @@ def read_route(route_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Route not found")
     return route
 
-# Vytvorenie novej trasy
+# ➕ Vytvorenie novej trasy
 @router.post("/", response_model=RouteRead)
 def create_route(route: RouteCreate, db: Session = Depends(get_db)):
     db_route = Route(**route.dict())
