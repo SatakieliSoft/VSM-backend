@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+
 from app.routes import users, landmarks, routes, auth
 from app.db.database import init_db
 
@@ -14,15 +15,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Inicializácia databázy
+# 🔄 Inicializácia databázy
 init_db()
 
-# Registrácia routerov
+# 📦 Registrácia routerov
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(landmarks.router, prefix="/landmarks", tags=["Landmarks"])
 app.include_router(routes.router, prefix="/routes", tags=["Routes"])
 
+# 🔍 Koreňová cesta (test API)
 @app.get("/")
 def read_root():
     return {"message": "Via Sancti Backend API is running."}
