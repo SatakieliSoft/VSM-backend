@@ -3,45 +3,52 @@ from app.db.database import SessionLocal
 from app.models.user import User
 from app.models.landmark import Landmark
 from app.models.route import Route
+from app.auth.auth_utils import get_password_hash
 
 def seed_demo_data():
     db = SessionLocal()
 
-    # Kontrola, či už dáta existujú
+    # 👉 Kontrola, či už niekto existuje
     if db.query(User).first():
         print("Demo data already seeded.")
         db.close()
         return
 
-    # ➕ Načítanie používateľov z JSON súboru
+    # ➕ Používatelia z JSON
     try:
         with open("data/demo-users.json", encoding="utf-8") as f:
             users = json.load(f)
             for u in users:
-                # Odstráň neznáme polia pre SQLAlchemy model, ak existujú
-                allowed_fields = {key: u[key] for key in ["id", "username", "full_name", "points"] if key in u}
+                allowed_fields = {key: u[key] for key in ["id", "email", "full_name", "points"] if key in u}
+                allowed_fields["hashed_password"] = get_password_hash(u["password"])
                 user = User(**allowed_fields)
                 db.add(user)
     except Exception as e:
-        print("Nepodarilo sa načítať používateľov zo súboru:", e)
+        print("❌ Nepodarilo sa načítať používateľov:", e)
 
-    # ➕ Pridanie ukážkovej pamiatky
-    landmark = Landmark(
-        name="Kostol sv. Martina v Tepličke",
-        description="Historický kostol zasvätený sv. Martinovi.",
-        latitude=49.1510,
-        longitude=18.7650
-    )
-    db.add(landmark)
+    # ➕ Pamiatky z JSON (nepovinné – ak máš súbor landmarks.json)
+    try:
+        with open("data/landmarks.json", encoding="utf-8") as f:
+            landmarks = json.load(f)
+            for l in landmarks:
+                allowed_fields = {key: l[key] for key in ["name", "description", "latitude", "longitude"]}
+                landmark = Landmark(**allowed_fields)
+                db.add(landmark)
+    except Exception as e:
+        print("⚠️ Nepodarilo sa načítať pamiatky:", e)
 
-    # ➕ Pridanie ukážkovej trasy
-    route = Route(
-        name="Úsek Teplička - Martin",
-        description="Krátka pútnická trasa medzi Tepličkou a Martinom.",
-        gpx_file="example.gpx"
-    )
-    db.add(route)
+    # ➕ Trasy z JSON
+    try:
+        with open("data/routes.json", encoding="utf-8") as f:
+            routes = json.load(f)
+            for r in routes:
+                allowed_fields = {key: r[key] for key in ["name", "description", "gpx_file"]}
+                route = Route(**allowed_fields)
+                db.add(route)
+    except Exception as e:
+        print("⚠️ Nepodarilo sa načítať trasy:", e)
 
+    # 💾 Uloženie
     db.commit()
     db.close()
-    print("Demo data seeded.")
+    print("✅ Demo data seeded.")
