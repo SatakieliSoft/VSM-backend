@@ -7,7 +7,7 @@ from app.db.seed_data import seed_demo_data  # 🆕 pridanie seedovacej funkcie
 
 app = FastAPI(title="Via Sancti Backend Demo")
 
-# ✅ Povolenie CORS pre frontend na GitHub Pages
+# ✅ Povolenie CORS pre frontend hostovaný na GitHub Pages
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["https://satakielisoft.github.io"],
@@ -18,9 +18,9 @@ app.add_middleware(
 
 # 🔄 Inicializácia databázy a seedovanie demo dát
 init_db()
-seed_demo_data()  # 🆕 spustenie seedovania
+seed_demo_data()  # 🆕 naplnenie databázy demo dátami zo súborov
 
-# 📦 Registrácia API routerov
+# 📦 Registrácia všetkých API routerov
 app.include_router(auth.router, prefix="/auth", tags=["Auth"])
 app.include_router(users.router, prefix="/users", tags=["Users"])
 app.include_router(landmarks.router, prefix="/landmarks", tags=["Landmarks"])
