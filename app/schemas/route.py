@@ -12,4 +12,4 @@ class RouteRead(RouteBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True  # namiesto zastaraného orm_mode
