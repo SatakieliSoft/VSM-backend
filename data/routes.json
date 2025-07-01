@@ -3,18 +3,18 @@
     "id": 1,
     "name": "Via Peregrini",
     "description": "Regionálna trasa medzi Teplickou nad Váhom a Martinom.",
-    "gpx_file": "gpx/via_peregrini.gpx"
+    "gpx_file": "via_peregrini.gpx"
   },
   {
     "id": 2,
     "name": "Via Insula Magna",
     "description": "Pútnická trasa medzi Bratislavou a Dolným Štálom.",
-    "gpx_file": "gpx/via_insula_magna.gpx"
+    "gpx_file": "via_insula_magna.gpx"
   },
   {
     "id": 3,
     "name": "Trasa Dolný Štál – Zemné",
     "description": "Prechod z Dolného Štálu do obce Zemné.",
-    "gpx_file": "gpx/dsz.gpx"
+    "gpx_file": "dsz.gpx"
   }
 ]
