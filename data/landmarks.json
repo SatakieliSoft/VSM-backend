@@ -1,26 +1,50 @@
 [
   {
     "id": 1,
-    "name": "Kostol sv. Martina",
+    "name": "Kostol sv. Martina v Tepličke nad Váhom",
     "typ": "kostol",
     "description": "Historický kostol sv. Martina v Tepličke nad Váhom.",
-    "latitude": 49.1508,
-    "longitude": 18.7651
+    "latitude": 49.226268149084554,
+    "longitude": 18.797436812624543
   },
   {
     "id": 2,
-    "name": "Kostol sv. Martina",
+    "name": "Kostol sv. Martina v Martine",
     "typ": "kostol",
-    "description": "Kostol sv. Martina v centre mesta Martin.",
-    "latitude": 49.0648,
-    "longitude": 18.9213
+    "description": "Rímskokatolícky kostol z 13. storočia, zasvätený sv. Martinovi.",
+    "latitude": 49.06169390706901,
+    "longitude": 18.920986318369756
   },
   {
     "id": 3,
-    "name": "Kostol sv. Martina",
+    "name": "Plastika sv. Martina",
+    "typ": "socha",
+    "description": "Plastika od Fraňa Štefunku na priečelí budovy v centre Martina.",
+    "latitude": 49.06285561993595,
+    "longitude": 18.921392428728787
+  },
+  {
+    "id": 4,
+    "name": "Farský kostol sv. Martina biskupa",
     "typ": "kostol",
-    "description": "Rímskokatolícky kostol sv. Martina v Dolnom Štáli.",
-    "latitude": 47.9816,
-    "longitude": 17.6333
+    "description": "Gotický kostol sv. Martina z prvej polovice 15. storočia v Dolnom Štáli.",
+    "latitude": 47.933939557936945,
+    "longitude": 17.71524040925603
+  },
+  {
+    "id": 5,
+    "name": "Kostol sv. Martina v Zemnom",
+    "typ": "kostol",
+    "description": "Katolícky farský kostol prestavaný v roku 1728 po vypálení pôvodného.",
+    "latitude": 47.9863131530217,
+    "longitude": 17.991414500253267
+  },
+  {
+    "id": 6,
+    "name": "Dom sv. Martina v Bratislave",
+    "typ": "kostol",
+    "description": "Dom postavený medzi rokmi 1432 – 1451 na mieste pôvodného kostola.",
+    "latitude": 48.142051074426305,
+    "longitude": 17.104765409498928
   }
 ]
