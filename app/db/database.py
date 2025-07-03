@@ -19,3 +19,11 @@ Base = declarative_base()
 def init_db():
     from app.models import user, landmark, route  # import modelov, aby SQLAlchemy vedel o tabuľkách
     Base.metadata.create_all(bind=engine)
+
+# Poskytuje databázovú session pre dependency injection
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
