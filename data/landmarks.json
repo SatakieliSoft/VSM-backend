@@ -47,4 +47,12 @@
     "latitude": 48.142051074426305,
     "longitude": 17.104765409498928
   }
+    {
+    "id": 7,
+    "name": "Gen riaditelstvo ZTS - len pre test",
+    "typ": "kostol",
+    "description": "Len test.",
+    "latitude": 49.071567587071485,
+    "longitude": 18.92000870804892
+  },
 ]
