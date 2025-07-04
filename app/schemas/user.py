@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import Optional
 
 class UserBase(BaseModel):
@@ -17,5 +17,4 @@ class UserRead(UserBase):
     id: int
     points: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
