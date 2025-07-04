@@ -3,17 +3,19 @@ from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from jose import jwt
 from datetime import datetime, timedelta
+from fastapi.security import OAuth2PasswordRequestForm
 
 from app.db.database import SessionLocal
 from app.models.user import User
 from app.schemas.user import UserCreate, UserLogin, UserRead
+from app.auth.auth_utils import get_current_user  # predpokladané
 
 router = APIRouter()
 
 # Zabezpečenie hesiel
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-# JWT konfigurácia (pre demo účel – tajný kľúč natvrdo)
+# JWT konfigurácia
 SECRET_KEY = "verysecretkey"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
@@ -33,7 +35,6 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
 
 @router.post("/register", response_model=UserRead)
 def register(user: UserCreate, db: Session = Depends(get_db)):
-    # Kontrola, či e-mail už existuje
     if db.query(User).filter(User.email == user.email).first():
         raise HTTPException(status_code=400, detail="E-mail už existuje.")
 
@@ -42,7 +43,8 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
         email=user.email,
         hashed_password=hashed_pw,
         username=user.username,
-        full_name=user.full_name
+        full_name=user.full_name,
+        points=0  # zabezpeči, aby nový používateľ začínal s 0 bodmi
     )
     db.add(new_user)
     db.commit()
@@ -58,3 +60,7 @@ def login(user: UserLogin, db: Session = Depends(get_db)):
     token_data = {"sub": db_user.email}
     token = create_access_token(token_data, timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES))
     return {"access_token": token, "token_type": "bearer"}
+
+@router.get("/me", response_model=UserRead)
+def get_profile(current_user: User = Depends(get_current_user)):
+    return current_user
