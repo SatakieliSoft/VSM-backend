@@ -6,6 +6,7 @@ from app.db.database import SessionLocal
 from app.models.user import User
 from app.schemas.user import UserCreate, UserRead
 from app.services.points import assign_points_to_user
+from app.auth.auth_utils import get_current_user  # 🔹 Dôležitý import
 
 router = APIRouter()
 
@@ -29,6 +30,11 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     return user
+
+# 🔹 Získanie aktuálne prihláseného používateľa
+@router.get("/me", response_model=UserRead)
+def get_current_user_profile(current_user: User = Depends(get_current_user)):
+    return current_user
 
 # Vytvorenie nového používateľa
 @router.post("/", response_model=UserRead)
