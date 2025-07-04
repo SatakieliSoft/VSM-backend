@@ -72,6 +72,9 @@ def register(user: UserCreate, db: Session = Depends(get_db)):
     db.add(new_user)
     db.commit()
     db.refresh(new_user)
+
+    print("✅ Zaregistrovaný nový používateľ:", new_user.email, new_user.id)  # debug výpis
+
     return new_user
 
 @router.post("/login")
