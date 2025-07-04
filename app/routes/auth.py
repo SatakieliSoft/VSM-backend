@@ -50,7 +50,7 @@ def verify_token(token: str):
 
 def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     payload = verify_token(token)
-    user_id = payload.get("sub")
+    user_id = int(payload.get("sub"))  # dôležité pre správne porovnanie
     user = db.query(User).filter(User.id == user_id).first()
     if user is None:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Používateľ neexistuje.")
