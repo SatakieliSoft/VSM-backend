@@ -1,26 +1,25 @@
+import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# Cesta k SQLite databáze
-DATABASE_URL = "sqlite:///./via_sancti.db"
+# Načítaj PostgreSQL URL z prostredia (Render → Environment → DATABASE_URL)
+DATABASE_URL2 = os.getenv("DATABASE_URL", "postgresql://vsm_issn_user:KWbToV8dhEclg6t4GERDPSE3OUDDzqJO@dpg-d1jqali4d50c738coe6g-a/vsm_issn")
 
-# Vytvorenie engine s podporou SQLite (nutné pridať connect_args)
-engine = create_engine(
-    DATABASE_URL, connect_args={"check_same_thread": False}
-)
+# Inicializácia engine
+engine = create_engine(DATABASE_URL)
 
-# Konfigurácia session (pripojenie k DB pre každú operáciu)
+# Session pre použitie v route-funkciách
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Základná trieda pre modely
 Base = declarative_base()
 
-# Funkcia na inicializáciu (vytvorenie tabuliek)
+# Import modelov + vytvorenie tabuliek
 def init_db():
-    from app.models import user, landmark, route  # import modelov, aby SQLAlchemy vedel o tabuľkách
+    from app.models import user, landmark, route
     Base.metadata.create_all(bind=engine)
 
-# Poskytuje databázovú session pre dependency injection
+# Dependency pre získanie DB session
 def get_db():
     db = SessionLocal()
     try:
