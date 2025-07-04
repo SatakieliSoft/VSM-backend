@@ -3,7 +3,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Načítaj PostgreSQL URL z prostredia (Render → Environment → DATABASE_URL)
-DATABASE_URL2 = os.getenv("DATABASE_URL", "postgresql://vsm_issn_user:KWbToV8dhEclg6t4GERDPSE3OUDDzqJO@dpg-d1jqali4d50c738coe6g-a/vsm_issn")
+DATABASE_URL2 = os.getenv("DATABASE_URL2", "postgresql://vsm_issn_user:KWbToV8dhEclg6t4GERDPSE3OUDDzqJO@dpg-d1jqali4d50c738coe6g-a/vsm_issn")
 
 # Inicializácia engine
 engine = create_engine(DATABASE_URL)
