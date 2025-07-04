@@ -2,11 +2,11 @@ import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-# Načítaj PostgreSQL URL z prostredia (Render → Environment → DATABASE_URL)
+# Načítaj PostgreSQL URL z prostredia (Render → Environment → DATABASE_URL2)
 DATABASE_URL2 = os.getenv("DATABASE_URL2", "postgresql://vsm_issn_user:KWbToV8dhEclg6t4GERDPSE3OUDDzqJO@dpg-d1jqali4d50c738coe6g-a/vsm_issn")
 
 # Inicializácia engine
-engine = create_engine(DATABASE_URL)
+engine = create_engine(DATABASE_URL2)
 
 # Session pre použitie v route-funkciách
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
